@@ -16,12 +16,12 @@
 #
 define yum::repo (
   $description = '',
-  $url_path = false,
-  $enabled = 0,
-  $gpgcheck = 0,
-  $baseurl = absent,
-  $mirrorlist = absent,
-  $cron_hour = 2,
+  $url_path    = false,
+  $enabled     = 0,
+  $gpgcheck    = 0,
+  $baseurl     = absent,
+  $mirrorlist  = absent,
+  $cron_hour   = 2,
   $cron_minute = 0,
 ) {
 
@@ -33,13 +33,13 @@ define yum::repo (
     enabled     => $enabled,
     gpgcheck    => $gpgcheck,
     baseurl     => $baseurl,
-    mirrorlist  => $mirrorlist
+    mirrorlist  => $mirrorlist,
   }
 
   cron { "reposync ${name}":
     command => "/usr/bin/reposync -r ${name} -p ${yum::repos_dir}; /usr/bin/createrepo -c /tmp/${name} ${yum::repos_dir}/${name}",
     hour    => $cron_hour,
-    minute  => $cron_minute
+    minute  => $cron_minute,
   }
 
   if $url_path {
@@ -56,7 +56,7 @@ define yum::repo (
     file { "${name} repo softlink":
       ensure => 'link',
       path   => "${yum::repos_dir}/${url_path}",
-      target => "${yum::repos_dir}/${name}"
+      target => "${yum::repos_dir}/${name}",
     }
 
   }
