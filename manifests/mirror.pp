@@ -19,9 +19,9 @@ class yum::mirror (
 ) {
 
   include yum
-  include apache
+  include ::httpd
 
-  apache::vhost { $vhost_name:
+  httpd::vhost { $vhost_name:
     port     => 80,
     docroot  => $yum::repos_dir,
     template => 'yum/vhost.erb',
