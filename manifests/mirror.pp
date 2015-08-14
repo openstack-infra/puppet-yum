@@ -18,7 +18,7 @@ class yum::mirror (
   $vhost_name = $::fqdn,
 ) {
 
-  include yum
+  include ::yum
   include ::httpd
 
   ::httpd::vhost { $vhost_name:

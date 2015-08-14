@@ -1,2 +1,4 @@
 *.swp
 pkg
+Gemfile.lock
+.bundled_gems/

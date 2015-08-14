@@ -15,7 +15,7 @@
 # Class: yum::repo
 #
 define yum::repo (
-  $description = '',
+  $description = undef,
   $url_path    = false,
   $enabled     = 0,
   $gpgcheck    = 0,
@@ -25,15 +25,15 @@ define yum::repo (
   $cron_minute = 0,
 ) {
 
-  include 'yum'
+  include ::yum
 
   yumrepo { $name:
-    name        => $name,
-    descr       => $description,
-    enabled     => $enabled,
-    gpgcheck    => $gpgcheck,
-    baseurl     => $baseurl,
-    mirrorlist  => $mirrorlist,
+    name       => $name,
+    descr      => $description,
+    enabled    => $enabled,
+    gpgcheck   => $gpgcheck,
+    baseurl    => $baseurl,
+    mirrorlist => $mirrorlist,
   }
 
   cron { "reposync ${name}":
