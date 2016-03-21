@@ -15,14 +15,14 @@
 # Class: yum::repo
 #
 define yum::repo (
-  $description = undef,
-  $url_path    = false,
-  $enabled     = 0,
-  $gpgcheck    = 0,
   $baseurl     = absent,
-  $mirrorlist  = absent,
   $cron_hour   = 2,
   $cron_minute = 0,
+  $description = undef,
+  $enabled     = 0,
+  $gpgcheck    = 0,
+  $mirrorlist  = absent,
+  $url_path    = false,
 ) {
 
   include ::yum
